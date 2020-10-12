@@ -65,6 +65,7 @@ class LocationAutoComplete extends Component {
   }
 
   render() {
+    
     return (
       <div className="LocationAutoComplete">
         <input

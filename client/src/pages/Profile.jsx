@@ -3,7 +3,47 @@ import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import "../styles/Profile.css";
 import "../styles/CardItem.css";
+import apiHandler from '.././api/apiHandler'
+
 class Profile extends Component {
+
+  state = {
+    items: [],
+  };
+
+  deleteItem = () => {
+    console.log(this.state.items.length)
+    console.log(this.props)
+    
+    // for (let i = 0; i<this.state.items.length; i++){
+    //   console.log(this.state.items[i]._id)
+
+    // }
+  
+    // apiHandler.deleteOne("/api/items" ).then(() => {
+      
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+  }
+
+
+  componentDidMount(){
+    apiHandler.getItems("/api/items").then((apiRes) => {
+      this.setState({
+        items: apiRes
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+
+
+
+
+
   render() {
     const { authContext } = this.props;
     const { user } = authContext;
@@ -78,19 +118,23 @@ class Profile extends Component {
                   alt="item"
                 />
               </div>
-              <div className="description">
-                <h2>Name of item</h2>
-                <h4>Quantity: 1 </h4>
-                <p>Description of the item</p>
+              {this.state.items.map((item, index) => (
+
+                <div key= {index} className="description">
+
+                <h2>{item.name}</h2>
+                <h4>{item.quantity}</h4>
+                <p>{item.description}</p>
                 <div className="buttons">
                   <span>
-                    <button className="btn-secondary">Delete</button>
+                    <button onClick={this.deleteItem} className="btn-secondary">Delete</button>
                   </span>
                   <span>
                     <button className="btn-primary">Edit</button>
                   </span>
                 </div>
               </div>
+              ))}
             </div>
           </div>
         </section>
