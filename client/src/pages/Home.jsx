@@ -1,6 +1,10 @@
 import React, {useRef ,useEffect } from "react";
 import mapboxgl from 'mapbox-gl';
+<<<<<<< HEAD
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN ;
+=======
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN; 
+>>>>>>> ad41e737a6b0ab306c97fa381f30badf62f9f72b
 
 const Home = (props) => {
   // Implement react map box here.
