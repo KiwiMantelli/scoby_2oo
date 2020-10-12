@@ -32,7 +32,7 @@ class ItemForm extends Component {
   render() {
     return (
       <div className="ItemForm-container">
-        <form className="form" onChange={this.handleChange}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <h2 className="title">Add Item</h2>
 
           <div className="form-group">
@@ -44,6 +44,7 @@ class ItemForm extends Component {
               className="input"
               type="text"
               placeholder="What are you giving away ?"
+              onChange={this.handleChange}
             />
           </div>
 
@@ -52,7 +53,7 @@ class ItemForm extends Component {
               Category
             </label>
 
-            <select id="category" defaultValue="-1">
+            <select id="category" defaultValue="-1" onChange={this.handleChange}>
               <option value="-1" disabled>
                 Select a category
               </option>
@@ -67,7 +68,7 @@ class ItemForm extends Component {
             <label className="label" htmlFor="quantity">
               Quantity
             </label>
-            <input className="input" id="quantity" type="number" />
+            <input className="input" id="quantity" type="number" onChange={this.handleChange} />
           </div>
 
           <div className="form-group">
@@ -85,6 +86,7 @@ class ItemForm extends Component {
               id="description"
               className="text-area"
               placeholder="Tell us something about this item"
+              onChange={this.handleChange}
             ></textarea>
           </div>
 
@@ -92,7 +94,7 @@ class ItemForm extends Component {
             <label className="custom-upload label" htmlFor="image">
               Upload image
             </label>
-            <input className="input" id="image" type="file" />
+            <input className="input" id="image" type="file" onChange={this.handleChange} />
           </div>
 
           <h2>Contact information</h2>
@@ -102,10 +104,10 @@ class ItemForm extends Component {
               How do you want to be reached?
             </label>
             <div>
-              <input type="radio" />
+              <input type="radio" onChange={this.handleChange}/>
               user email
             </div>
-            <input type="radio" />
+            <input type="radio" onChange={this.handleChange}/>
             contact phone number
           </div>
 

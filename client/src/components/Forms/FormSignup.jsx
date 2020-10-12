@@ -53,7 +53,7 @@ class FormSignup extends Component {
         <form
           autoComplete="off"
           className="form"
-          onChange={this.handleChange}
+         
           onSubmit={this.handleSubmit}
         >
           <h2 className="title">Create account</h2>
@@ -67,6 +67,7 @@ class FormSignup extends Component {
               id="firstName"
               type="text"
               name="firstName"
+              onChange={this.handleChange}
             />
           </div>
 
@@ -79,6 +80,7 @@ class FormSignup extends Component {
               id="lastName"
               type="text"
               name="lastName"
+              onChange={this.handleChange}
             />
           </div>
 
@@ -86,7 +88,7 @@ class FormSignup extends Component {
             <label className="label" htmlFor="email">
               Email
             </label>
-            <input className="input" id="email" type="email" name="email" />
+            <input className="input" id="email" type="email" name="email"  onChange={this.handleChange} />
           </div>
 
           <div className="form-group">
@@ -98,6 +100,7 @@ class FormSignup extends Component {
               id="password"
               type="password"
               name="password"
+              onChange={this.handleChange}
             />
           </div>
 
