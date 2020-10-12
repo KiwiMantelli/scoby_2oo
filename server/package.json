@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "cloudinary": "^1.23.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -16,12 +17,7 @@
     "express": "^4.16.4",
     "express-session": "^1.17.1",
     "mapbox-gl": "^1.12.0",
-<<<<<<< HEAD
-    "mongoose": "^5.10.9",
-    "morgan": "^1.9.1"
-=======
     "mongoose": "^5.9.13",
     "morgan": "~1.9.1"
->>>>>>> 14d0489776da40c7fa53c3fb741140b8a60c9c39
   }
 }
