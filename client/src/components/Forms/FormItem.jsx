@@ -34,13 +34,14 @@ class ItemForm extends Component {
         console.log(error)
     })
   }
-  
+
   createItems = () => {
     const fd = new FormData();
     
     for (let key in this.state) {
       fd.append(key, this.state[key]);
     }
+    
     apiHandler.createItem(fd).then(() => {
       this.props.history.push("/profile")
     }).catch((error) => {
