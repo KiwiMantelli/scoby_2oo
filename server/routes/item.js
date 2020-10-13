@@ -41,7 +41,7 @@ router.post("/", uploader.single("image"), (req, res, next) => {
 router.patch("/:id", (req, res, next) => {
   const updateValue = req.body;
 
-  Item.findOneAndUpdate(req.params.id, updateValue, { new: true })
+  Item.findByIdAndUpdate(req.params.id, updateValue, { new: true })
     .then((dbRes) => {
       res.status(200).json(dbRes);
     })
@@ -51,7 +51,7 @@ router.patch("/:id", (req, res, next) => {
 });
 
 router.delete("/:id", (req, res, next) => {
-  Item.findOneAndDelete(req.params.id)
+  Item.findByIdAndDelete(req.params.id)
     .then((dbRes) => {
       res.status(204).json(dbRes);
     })

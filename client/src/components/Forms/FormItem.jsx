@@ -16,15 +16,27 @@ class ItemForm extends Component {
   };
 
 
+  updateItems = (id) => {
+    console.log(id)
+    // apiHandler.updateOne("/api/items/" + this.props.match.params.id, this.state)
+    // .then(() => {
+    //   this.props.history.push("/profile")
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
+  }
+
+
 
   createItems = () => {
-    const fd = new FormData
+    const fd = new FormData();
 
     for (let key in this.state) {
       fd.append(key, this.state[key]);
     }
     apiHandler.createItem("/api/items", fd).then((apiRes) => {
-      this.props.history.push("/items")
+      this.props.history.push("/profile")
     }).catch((error) => {
       console.log(error);
     })
@@ -46,7 +58,12 @@ class ItemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.createItems();
+    if (this.props.action === "edit"){
+      this.updateItems();
+    } else {
+      this.createItems();
+    }
+    
 
     // In order to send back the data to the client, since there is an input type file you have to send the
     // data as formdata.

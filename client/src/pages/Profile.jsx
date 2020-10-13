@@ -11,21 +11,17 @@ class Profile extends Component {
     items: [],
   };
 
-  deleteItem = () => {
-    console.log(this.state.items.length)
-    console.log(this.props)
-    
-    // for (let i = 0; i<this.state.items.length; i++){
-    //   console.log(this.state.items[i]._id)
+  deleteItem = (id) => {
+    console.log(id)
 
-    // }
-  
-    // apiHandler.deleteOne("/api/items" ).then(() => {
-      
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // })
+    apiHandler.deleteOne("/api/items/" + id, this.state).then(() => {
+      this.setState({
+        items: this.state.items.filter((item) => item.id !== this.state.items[id] )
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
 
@@ -38,12 +34,7 @@ class Profile extends Component {
       console.log(error)
     })
   }
-
-
-
-
-
-
+  
   render() {
     const { authContext } = this.props;
     const { user } = authContext;
@@ -127,10 +118,13 @@ class Profile extends Component {
                 <p>{item.description}</p>
                 <div className="buttons">
                   <span>
-                    <button onClick={this.deleteItem} className="btn-secondary">Delete</button>
+                    <button onClick={() => this.deleteItem(item._id)} className="btn-secondary">Delete</button>
                   </span>
                   <span>
-                    <button className="btn-primary">Edit</button>
+                  <Link to={`/item/${item._id}/edit`}>
+                  <button className="btn-primary">Edit</button>
+                  </Link>
+                    
                   </span>
                 </div>
               </div>
