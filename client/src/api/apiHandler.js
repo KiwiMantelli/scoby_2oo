@@ -51,12 +51,19 @@ export default {
       .catch(errorHandler);
   },
 
-  createItem(endpoint, data) {
-    return service.post(endpoint, data);
+  createItem(data) {
+    return service.post("/api/items", data);
   },
 
   deleteOne(endpoint, data) {
     return service.delete(endpoint, data);
   },
+
+  getOne(endpoint){
+    return service.get(endpoint);
+  },
+  updateOne(endpoint, data){
+    return service.patch(endpoint, data)
+  }
   
 };
