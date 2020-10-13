@@ -5,7 +5,34 @@ import apiHandler from "../../api/apiHandler";
 import "../../styles/form.css";
 
 class FormSignup extends Component {
-  state = {};
+  state = {
+    firstName:"",
+    lastName:"",
+    email:"",
+    password:"",
+  };
+
+  componentDidMount(){
+    apiHandler.getOne("/profile/settings").then((apiRes) => {
+      console.log(apiRes.data)
+    })
+    // this.setState({
+    //   firstName:a,
+    //   lastName:"",
+    //   email:"",
+    //   password:"",
+    // })
+  }
+
+  updateUser = () => {
+    apiHandler.updateOne("/profile/settings", this.state).then((apiRes) => {
+      console.log(apiRes.data)
+      
+    })
+    .catch((error) => {
+      console.log(error)
+    })  
+  }
 
   handleChange = (event) => {
     const value =
@@ -19,15 +46,11 @@ class FormSignup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { authContext } = this.props;
-    // authContext
-    //   .signup(this.state)
-    //   .then(() => {
-    //     this.props.history.push("/profile");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    apiHandler
+
+    if (this.props.action === "edit"){
+      this.updateUser();
+    } else {
+      apiHandler
       .signup(this.state)
       .then((data) => {
         authContext.setUser(data);
@@ -36,9 +59,11 @@ class FormSignup extends Component {
       .catch((error) => {
         console.log(error);
       });
+    }
   };
 
   render() {
+    
     return (
       <section className="form-section">
         <header className="header">
@@ -68,6 +93,7 @@ class FormSignup extends Component {
               type="text"
               name="firstName"
               onChange={this.handleChange}
+              value= {this.state.firstName}
             />
           </div>
 

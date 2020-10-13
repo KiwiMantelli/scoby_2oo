@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import FormItem from "./components/Forms/FormItem";
 import EditItem from "./pages/EditItems"
+import EditUser from "./pages/EditUser"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path = "/item/:id/edit" component={EditItem}/>
         <Route exact path="/item/create" component={FormItem} />
         <ProtectedRoute exact path="/profile" component={Profile} />
+        <Route exact path = "/profile/settings" component = {EditUser}/>
       </Switch>
     </div>
   );
